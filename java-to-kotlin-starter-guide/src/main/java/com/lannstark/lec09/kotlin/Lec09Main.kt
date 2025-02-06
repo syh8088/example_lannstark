@@ -32,7 +32,7 @@ class Person(
         println("두 번째 부생성자")
     }
 
-    fun isAdult(): Boolean {
+    fun isAdult1(): Boolean {
         return this.age > 20
     }
 
