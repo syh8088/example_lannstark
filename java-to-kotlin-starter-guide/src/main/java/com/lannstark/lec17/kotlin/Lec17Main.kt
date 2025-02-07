@@ -143,11 +143,11 @@ fun main() {
 //        list.filter { fruit -> fruit. factoryPrice == fruit.currentPrice }
 //
 //    }
-    
+
     /**
      * List<List<Fruit>>를 List<Fruit>로 그냥 바꾸어주세요!
      */
-    fruitsInList.flatten()
+//    fruitsInList.flatten()
 }
 
 
