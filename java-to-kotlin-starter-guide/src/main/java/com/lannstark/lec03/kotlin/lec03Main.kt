@@ -28,6 +28,9 @@ fun main() {
 
 }
 
+/**
+ * 타입 캐스팅
+ */
 fun printAgeIfPerson(obj: Any) {
     if (obj is Person) {
         val person = obj as Person

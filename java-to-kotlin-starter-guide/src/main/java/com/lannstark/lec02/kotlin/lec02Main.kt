@@ -2,6 +2,9 @@ package com.lannstark.lec02.kotlin
 
 import com.lannstark.lec02.Person
 
+/**
+ * kotlin 에서는 null 이 가능한 타입을 완전히 다르게 취급 한다!
+ */
 fun main() {
 
     // Safe Call
@@ -67,6 +70,9 @@ fun startsWithA3_1(str: String?): Boolean {
     return str?.startsWith("A") ?: false
 }
 
+/**
+ * null 아님을 단언!!
+ */
 fun startWith(str: String?): Boolean {
     return str!!.startsWith("A")
 }

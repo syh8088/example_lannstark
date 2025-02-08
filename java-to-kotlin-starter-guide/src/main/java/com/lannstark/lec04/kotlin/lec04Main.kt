@@ -15,7 +15,14 @@ fun main() {
     val money4 = money3
     val money5 = JavaMoney(2000L)
 
+    /**
+     * 동일성
+     */
     println(money3 === money4)
+
+    /**
+     * 동등성
+     */
     println(money4 == money5)
 
 
