@@ -4,7 +4,7 @@ import com.group.libraryapp.domain.book.Book;
 import com.group.libraryapp.domain.book.BookRepository;
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
-import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository;
+import com.group.libraryapp.domain.user.loanhistory.JavaUserLoanHistoryRepository;
 import com.group.libraryapp.dto.book.request.BookLoanRequest;
 import com.group.libraryapp.dto.book.request.BookRequest;
 import com.group.libraryapp.dto.book.request.BookReturnRequest;
@@ -16,12 +16,12 @@ public class BookService {
 
   private final BookRepository bookRepository;
   private final UserRepository userRepository;
-  private final UserLoanHistoryRepository userLoanHistoryRepository;
+  private final JavaUserLoanHistoryRepository userLoanHistoryRepository;
 
   public BookService(
       BookRepository bookRepository,
       UserRepository userRepository,
-      UserLoanHistoryRepository userLoanHistoryRepository
+      JavaUserLoanHistoryRepository userLoanHistoryRepository
   ) {
     this.bookRepository = bookRepository;
     this.userRepository = userRepository;
