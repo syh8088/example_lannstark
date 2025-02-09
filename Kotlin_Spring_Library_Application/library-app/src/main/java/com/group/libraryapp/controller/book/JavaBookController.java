@@ -7,14 +7,13 @@ import com.group.libraryapp.service.book.JavaBookService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class BookController {
+//@RestController
+public class JavaBookController {
 
   private final JavaBookService bookService;
 
-  public BookController(JavaBookService bookService) {
+  public JavaBookController(JavaBookService bookService) {
     this.bookService = bookService;
   }
 
