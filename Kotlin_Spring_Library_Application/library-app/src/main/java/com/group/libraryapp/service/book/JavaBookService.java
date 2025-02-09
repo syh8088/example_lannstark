@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BookService {
+public class JavaBookService {
 
   private final JavaBookRepository bookRepository;
   private final JavaUserRepository userRepository;
   private final JavaUserLoanHistoryRepository userLoanHistoryRepository;
 
-  public BookService(
+  public JavaBookService(
       JavaBookRepository bookRepository,
       JavaUserRepository userRepository,
       JavaUserLoanHistoryRepository userLoanHistoryRepository
