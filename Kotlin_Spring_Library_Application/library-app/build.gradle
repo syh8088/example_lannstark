@@ -7,6 +7,28 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
     id 'org.jetbrains.kotlin.kapt' version '1.6.21'
 }
+/**
+ * plugins, dependencies와 같은 Level (즉 build.gradle 최상단)
+ *
+ * 이유는 다음과 같습니다!
+ * 아시다시피, Kotlin은 기본적으로 Class도 final, 함수도 final입니다!! (즉, 상속과 오버라이드를 막아두었습니다!)
+ * 하지만 JPA를 사용할 때 Proxy Lazy Fetching을 완전히 이용하려면
+ * (27강에서 Lazy Fetching에 대한 이야기가 있습니다!)
+ * 클래스가 상속 가능해야 합니다!! 제가 확인해본 바로는 @OneToMany에 있어서는 Lazy Fetching이 동작하지만
+ * @ManyToOne에 대해서는 Lazy Fetching 옵션을 명시적으로 주더라도 동작하지 않았습니다.
+ *
+ * 그래서 all-open 기능을 통해 @Entity 클래스들은 Decompile을 했을 때도 class가
+ * 열려 있게끔 처리해주어야 하고, 위의 스크립트가 바로 그런 역할을 수행하게 됩니다.
+ *
+ * 본 강의에서는 @ManyToOne Lazy Fetching을 사용하지 않다보니,  해당 plugin이 강의에서 언급되지 않았습니다.
+ * 다음부터는 조금 더 꼼꼼하게 설계할 수 있도록 하겠습니다. 감사합니다!! 🙏
+ */
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
 
 group = 'com.group'
 version = '0.0.1-SNAPSHOT'
