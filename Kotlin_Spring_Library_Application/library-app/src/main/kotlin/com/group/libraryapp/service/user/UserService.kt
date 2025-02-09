@@ -26,7 +26,7 @@ class UserService(
     fun getUsers(): List<UserResponse> {
         return userRepository.findAll()
             .map { user ->
-                UserResponse(user)
+                UserResponse.of(user)
             }
     }
 
