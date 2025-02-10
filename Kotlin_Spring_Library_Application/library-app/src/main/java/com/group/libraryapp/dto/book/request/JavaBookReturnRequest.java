@@ -1,6 +1,6 @@
 package com.group.libraryapp.dto.book.request;
 
-public class BookReturnRequest {
+public class JavaBookReturnRequest {
 
   private String userName;
   private String bookName;
