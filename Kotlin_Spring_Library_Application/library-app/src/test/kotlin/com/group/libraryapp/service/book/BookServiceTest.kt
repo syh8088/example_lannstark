@@ -7,9 +7,12 @@ import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.JavaUserLoanHistoryRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
+import com.group.libraryapp.dto.book.request.BookReturnRequest
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.AssertionsForInterfaceTypes
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -64,7 +67,7 @@ class BookServiceTest @Autowired constructor(
         val results = userLoanHistoryRepository.findAll()
         assertThat(results[0].bookName).isEqualTo("test")
         assertThat(results[0].user.id).isEqualTo(savedUser.id)
-        assertThat(results[0].isReturn).isFalse()
+        assertThat(results[0].status).isEqualTo(UserLoanStatus.LOANED)
     }
 
     @Test
@@ -74,10 +77,9 @@ class BookServiceTest @Autowired constructor(
         bookRepository.save(Book.fixture("test"))
         val savedUser = userRepository.save(User("test", null))
         userLoanHistoryRepository.save(
-            UserLoanHistory(
+            UserLoanHistory.fixture(
                 savedUser,
-                "test",
-                false
+                "test"
             )
         )
         val request = BookLoanRequest("test", "test")
@@ -90,20 +92,20 @@ class BookServiceTest @Autowired constructor(
     }
 
 
-//    @Test
-//    @DisplayName("책 반납이 정상 동작한다")
-//    fun returnBookTest() {
-//        // given
-//        val savedUser = userRepository.save(User("test", null))
-//        userLoanHistoryRepository.save(UserLoanHistory.fixture(savedUser, "test"))
-//        val request = BookReturnRequest("test", "test")
-//
-//        // when
-//        bookService.returnBook(request)
-//
-//        // then
-//        val results = userLoanHistoryRepository.findAll()
-//        AssertionsForInterfaceTypes.assertThat(results).hasSize(1)
-//        assertThat(results[0].status).isEqualTo(UserLoanStatus.RETURNED)
-//    }
+    @Test
+    @DisplayName("책 반납이 정상 동작한다")
+    fun returnBookTest() {
+        // given
+        val savedUser = userRepository.save(User("test", null))
+        userLoanHistoryRepository.save(UserLoanHistory.fixture(savedUser, "test"))
+        val request = BookReturnRequest("test", "test")
+
+        // when
+        bookService.returnBook(request)
+
+        // then
+        val results = userLoanHistoryRepository.findAll()
+        AssertionsForInterfaceTypes.assertThat(results).hasSize(1)
+        assertThat(results[0].status).isEqualTo(UserLoanStatus.RETURNED)
+    }
 }
