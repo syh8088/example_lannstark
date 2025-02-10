@@ -25,7 +25,7 @@ data class BookHistoryResponse(
     fun of(history: UserLoanHistory): BookHistoryResponse {
       return BookHistoryResponse(
         name = history.bookName,
-        isReturn = history.status
+        isReturn = history.isReturn
       )
     }
   }
