@@ -4,5 +4,6 @@ package com.group.libraryapp.dto.book.request
 
 data class BookRequest(
   val name: String,
+  val type: String,
 //  val type: BookType,
 )
