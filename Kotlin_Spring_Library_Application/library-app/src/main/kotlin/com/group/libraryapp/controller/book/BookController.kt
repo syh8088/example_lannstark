@@ -34,7 +34,7 @@ class BookController(
 
     @GetMapping("/book/stat")
     fun getBookStatistics(): List<BookStatResponse> {
-        return bookService.getBookStatisticsV2()
+        return bookService.getBookStatisticsV3()
     }
 
 }

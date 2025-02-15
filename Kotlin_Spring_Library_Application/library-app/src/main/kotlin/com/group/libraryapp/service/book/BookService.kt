@@ -45,7 +45,8 @@ class BookService(
 
     @Transactional(readOnly = true)
     fun countLoanedBook(): Int {
-        return userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED).size
+//        return userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED).size
+        return userLoanHistoryRepository.countByStatus(UserLoanStatus.LOANED).toInt()
     }
 
     @Transactional(readOnly = true)
@@ -78,13 +79,20 @@ class BookService(
      * 또한 'Self Call' 이나 'Elvis operator' 그리고 firstOrNull 연속으로 호출에 있어서
      * 콜체인 길이 때문에 코드 이해 및 유지보수 힘들다.
      */
-    @Transactional(readOnly = true)
-    fun getBookStatisticsV2(): List<BookStatResponse> {
+//    @Transactional(readOnly = true)
+//    fun getBookStatisticsV2(): List<BookStatResponse> {
+//
+//        return bookRepository.findAll() // List<Book>
+//            .groupBy { book -> book.type } // Map<BookType, List<Book>>
+//            .map { (type, books) -> BookStatResponse(type, books.size) } // List<BookStatResponse>
+//    }
 
-        return bookRepository.findAll() // List<Book>
-            .groupBy { book -> book.type } // Map<BookType, List<Book>>
-            .map { (type, books) -> BookStatResponse(type, books.size) } // List<BookStatResponse>
+    @Transactional(readOnly = true)
+    fun getBookStatisticsV3(): List<BookStatResponse> {
+
+        return bookRepository.getStats()
     }
+
 
 
 }
