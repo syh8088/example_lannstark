@@ -75,6 +75,15 @@ fun main() {
         .map { fruit -> fruit.name }
 
 
+    val list = fruits.map { fruit ->
+        val v2 = v2(fruit)
+        v2  + " rewtwet3"
+    }
+    for (word in list) {
+        println(word)
+    }
+
+
     /**
      * last : 마지막 값을 가져온다 (무조건 null이 아니어야함)
      * lastOrNull : 첫번째 값 또는 null을 가져온다
@@ -178,3 +187,8 @@ private fun filterFruits2(
 }
 
 
+
+
+fun v2(fruit: Fruit): String {
+    return fruit.name
+}
