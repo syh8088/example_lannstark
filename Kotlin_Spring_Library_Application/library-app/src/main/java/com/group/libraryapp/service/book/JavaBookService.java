@@ -30,16 +30,16 @@ public class JavaBookService {
 
   @Transactional
   public void saveBook(JavaBookRequest request) {
-    Book newBook = new Book(request.getName(), null);
-    bookRepository.save(newBook);
+//    Book newBook = new Book(request.getName(), null);
+//    bookRepository.save(newBook);
   }
 
   @Transactional
   public void loanBook(JavaBookLoanRequest request) {
     Book book = bookRepository.findByName(request.getBookName()).orElseThrow(IllegalArgumentException::new);
-    if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.getBookName(), false) != null) {
-      throw new IllegalArgumentException("진작 대출되어 있는 책입니다");
-    }
+//    if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.getBookName(), false) != null) {
+//      throw new IllegalArgumentException("진작 대출되어 있는 책입니다");
+//    }
 
     User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
     user.loanBook(book);

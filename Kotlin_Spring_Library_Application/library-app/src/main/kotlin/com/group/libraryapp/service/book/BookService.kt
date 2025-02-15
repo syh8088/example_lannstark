@@ -73,6 +73,18 @@ class BookService(
         return results
     }
 
+    /**
+     * {@link getBookStatistics()} 비교해서 가변 선언으로 인해 실수 할 여지가 있다.
+     * 또한 'Self Call' 이나 'Elvis operator' 그리고 firstOrNull 연속으로 호출에 있어서
+     * 콜체인 길이 때문에 코드 이해 및 유지보수 힘들다.
+     */
+    @Transactional(readOnly = true)
+    fun getBookStatisticsV2(): List<BookStatResponse> {
+
+        return bookRepository.findAll() // List<Book>
+            .groupBy { book -> book.type } // Map<BookType, List<Book>>
+            .map { (type, books) -> BookStatResponse(type, books.size) } // List<BookStatResponse>
+    }
 
 
 }

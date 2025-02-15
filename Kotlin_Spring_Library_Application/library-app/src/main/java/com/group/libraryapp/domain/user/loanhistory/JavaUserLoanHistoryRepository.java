@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JavaUserLoanHistoryRepository extends JpaRepository<UserLoanHistory, Long> {
 
-  JavaUserLoanHistory findByBookNameAndIsReturn(String bookName, boolean isReturn);
+//  JavaUserLoanHistory findByBookNameAndIsReturn(String bookName, boolean isReturn);
 
 }
