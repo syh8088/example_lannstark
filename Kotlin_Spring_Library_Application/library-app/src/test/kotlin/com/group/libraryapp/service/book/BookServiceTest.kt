@@ -49,7 +49,7 @@ class BookServiceTest @Autowired constructor(
         val books = bookRepository.findAll()
         assertThat(books).hasSize(1)
         assertThat(books[0].name).isEqualTo("이상한 나라의 엘리스")
-        assertThat(books[0].name).isEqualTo(BookType.COMPUTER)
+        assertThat(books[0].type).isEqualTo(BookType.COMPUTER)
     }
 
     @Test
