@@ -2,6 +2,9 @@ package generic
 
 fun main() {
 
+    val cage = Cage5(mutableListOf(Eagle(), Sparrow()))
+    cage.printAfterSorting()
+
 }
 
 abstract class Bird(
@@ -44,6 +47,9 @@ class Cage5<T>(
   }
 }
 
+/**
+ * 두 리스트에 겹치는 원소가 하나라도 있는지 확인하는 함수
+ */
 fun <T> List<T>.hasIntersection(other: List<T>): Boolean {
   return (this.toSet() intersect other.toSet()).isNotEmpty()
 }
