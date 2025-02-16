@@ -77,6 +77,7 @@ fun main() {
 
     val list = fruits.map { fruit ->
         val v2 = v2(fruit)
+        val test = "tttet"
         v2  + " rewtwet3"
     }
     for (word in list) {
