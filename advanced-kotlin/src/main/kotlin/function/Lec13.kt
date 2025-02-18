@@ -12,6 +12,14 @@ fun main() {
   // 익명함수
   // compute(5, 3, fun(a, b) = a + b)
 
+  iterate(listOf(1, 2, 3, 4, 5), fun(num) {
+      if (num == 3) {
+        return
+      }
+
+      println(num)
+  })
+
   iterate(listOf(1, 2, 3, 4, 5)) { num ->
     if (num != 3) {
       println(num)
